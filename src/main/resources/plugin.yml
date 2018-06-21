@@ -1,0 +1,7 @@
+name: DreamIn
+version: ${project.version}
+main: com.dream.main
+authors: [QuickSand]
+commands:
+  dream:
+
