@@ -1,6 +1,6 @@
 name: DreamIn
 version: ${project.version}
-main: com.dream.main
+main: com.dream.Main.main
 authors: [QuickSand]
 commands:
   dream:

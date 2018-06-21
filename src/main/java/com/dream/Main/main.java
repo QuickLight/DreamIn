@@ -1,27 +1,21 @@
-package com.dream;
+package com.dream.Main;
 
-//import net.minecraft.server.v1_12_R1.*;
-
-import org.bukkit.Material;
+import com.dream.Listener.listeners;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-//import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
-public final class main extends JavaPlugin implements Listener {
+public final class main extends JavaPlugin {
     @Override
     public void onEnable() {
-        getServer().getPluginManager().registerEvents(this, this);
+        getServer().getPluginManager().registerEvents(new listeners(), this);
     }
 
     @Override
@@ -67,21 +61,5 @@ public final class main extends JavaPlugin implements Listener {
         return true;
     }
 
-    @EventHandler
-    public void onPD(EntityDamageByEntityEvent event) {
-        if (event.isCancelled() || !(event.getDamager() instanceof Player)) return;
-        Player p = (Player) event.getDamager();
-        if (p.getItemInHand() == null || p.getItemInHand().getType() == Material.AIR) return;
-        ItemStack is = p.getItemInHand();
-        if (!is.hasItemMeta() || !is.getItemMeta().hasLore()) return;
-        List<String> l = is.getItemMeta().getLore();
-        l.forEach((x) -> {
-            if (x.contains("力量 ")) {
-                int ll = Integer.parseInt(x.substring(x.indexOf(" ") + 1));
-                event.setDamage(ll);
-            }
 
-        });
-
-    }
 }
